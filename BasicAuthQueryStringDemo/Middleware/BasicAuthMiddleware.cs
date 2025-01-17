@@ -35,11 +35,27 @@ public class BasicAuthMiddleware
                     string decodedUsername = credentials[0];
                     string decodedPassword = credentials[1];
 
-                    _logger.LogInformation("Decoded Username: {Username}, Decoded Password: {Password}", decodedUsername, decodedPassword);
+                    string configuredUsername = _appSettings.Value.Username;
+                    string configuredPassword = _appSettings.Value.Password;
+
+                    if (decodedUsername == configuredUsername && decodedPassword == configuredPassword)
+                    {
+                        _logger.LogInformation("Authentication successful for user: {Username}", decodedUsername);
+                    }
+                    else
+                    {
+                        _logger.LogWarning("Invalid credentials provided.");
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        await context.Response.WriteAsync("Unauthorized.");
+                        return;
+                    }
                 }
                 else
                 {
                     _logger.LogWarning("Invalid Base64 credentials format.");
+                    context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                    await context.Response.WriteAsync("Invalid Base64 credentials format.");
+                    return;
                 }
             }
             catch (FormatException ex)
@@ -53,6 +69,9 @@ public class BasicAuthMiddleware
         else
         {
             _logger.LogWarning("No credentials found in the query string.");
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsync("Unauthorized.");
+            return;
         }
 
         await _next(context);

@@ -1,6 +1,9 @@
+using BasicAuthQueryStringDemo.Infrastructure.Configuration;
 using BasicAuthQueryStringDemo.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<BasicAuth>(builder.Configuration.GetSection("BasicAuth"));
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
