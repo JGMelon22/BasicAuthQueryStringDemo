@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicAuthQueryStringDemo", "BasicAuthQueryStringDemo\BasicAuthQueryStringDemo.csproj", "{26FC0923-B3CA-45DE-ABDF-CABCB333C12E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicAuthQueryStringDemo.Tests", "BasicAuthQueryStringDemo.Tests\BasicAuthQueryStringDemo.Tests.csproj", "{25CD7CD2-EB18-4B32-811A-31FAB3C496CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{26FC0923-B3CA-45DE-ABDF-CABCB333C12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26FC0923-B3CA-45DE-ABDF-CABCB333C12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26FC0923-B3CA-45DE-ABDF-CABCB333C12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25CD7CD2-EB18-4B32-811A-31FAB3C496CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25CD7CD2-EB18-4B32-811A-31FAB3C496CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25CD7CD2-EB18-4B32-811A-31FAB3C496CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25CD7CD2-EB18-4B32-811A-31FAB3C496CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

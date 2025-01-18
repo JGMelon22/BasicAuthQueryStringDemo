@@ -10,8 +10,11 @@ public class BasicAuthMiddleware
     private readonly ILogger<BasicAuthMiddleware> _logger;
     private readonly IOptions<BasicAuth> _appSettings;
 
-    public BasicAuthMiddleware(RequestDelegate next, ILogger<BasicAuthMiddleware> logger,
-        IOptions<BasicAuth> appSettings)
+    public BasicAuthMiddleware(
+        RequestDelegate next,
+        ILogger<BasicAuthMiddleware> logger,
+        IOptions<BasicAuth> appSettings
+    )
     {
         _next = next;
         _logger = logger;
