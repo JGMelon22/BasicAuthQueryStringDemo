@@ -1,5 +1,6 @@
 using BasicAuthQueryStringDemo.Infrastructure.Configuration;
 using BasicAuthQueryStringDemo.Middleware;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,34 @@ builder.Services.Configure<BasicAuth>(builder.Configuration.GetSection("BasicAut
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basic Auth via Query String Sample", Version = "v1" });
+
+    c.AddSecurityDefinition("BasicAuth", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.ApiKey,
+        Name = "credentials",
+        In = ParameterLocation.Query,
+        Description = "Base64-encoded credentials in the format username:password (without URL encoding)",
+        Scheme = "basisc"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "BasicAuth"
+                }
+            },
+            new string[] { }
+        }
+    });
+});
 
 var app = builder.Build();
 
